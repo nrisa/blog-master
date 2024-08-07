@@ -1,3 +1,8 @@
+#admin {
+    overflow-y: scroll;
+    height: calc(100dvh - 76.19px);
+}
+
 .cs-reset {
     margin: 0 !important;
     padding: 0 !important;
@@ -28,4 +33,18 @@
 
 .text-mini {
     font-size: 9px !important;
+}
+
+#login {
+    width: 100%;
+    height: calc(100dvh - 77.5px);
+}
+
+.card-login {
+    transform: translateY(-77.5px);
+}
+
+.py-2-custom {
+    padding-top: .6rem !important;
+    padding-bottom: .6rem !important;
 }

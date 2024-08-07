@@ -63,7 +63,7 @@
       <h1 class="mb-3 fw-light">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis, nihil.</h1>  
       <small class="mb-3 text-muted d-block">senin, 19 januari 2024 | 12:00</small>    
       <div class="mb-3 bg-secondary w-100 d-flex justify-content-center align-items-center overflow-hidden rounded mt-3" style="height: 500px">
-          <!-- <img src="..." class="d-block w-100" alt="..."> -->
+        <img src="{{ asset('storage/' . $content->foto) }}" class="card-img-top" alt="{{ $content->title }}">
       </div>
       <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet officia architecto nesciunt corrupti deserunt id, vero quisquam alias temporibus odio, impedit ipsam asperiores quidem incidunt excepturi magnam blanditiis, repellendus rerum tenetur. Dolor voluptatum incidunt, est cupiditate quam iste porro minima impedit accusamus neque molestiae nesciunt nemo ipsa, hic harum, excepturi quisquam reprehenderit vel obcaecati id repellat veritatis omnis repellendus corrupti? Magni, illum fuga beatae amet eos dolorem cum explicabo ea sequi officia nisi, necessitatibus non doloribus ex corrupti! Porro magni accusantium adipisci dolorem id quam, reprehenderit itaque sit sint, debitis expedita nemo iure animi aut iste, beatae voluptate suscipit doloremque.

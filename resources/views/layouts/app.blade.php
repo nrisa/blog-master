@@ -41,11 +41,12 @@
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Category
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <ul class="dropdown-menu">                        
+                        @foreach($categories as $category)
+                        <li><a class="dropdown-item" href="#">
+                                {{ $category->categori }}
+                        </a></li>
+                        @endforeach 
                     </ul>
                     </li>
                 </ul>
@@ -53,10 +54,12 @@
             </div>
         </nav> 
         <nav class="py-2 bg-primary">
-            <div class="container">
-                <small class="me-2 text-white">Berita Baru</small>
-                <small class="me-2 text-white">Entertaiment</small>
-                <small class="me-2 text-white">Daerah</small>
+            <div class="container">                
+                @foreach($categories as $category)
+                    <small class="me-2 text-white">
+                        {{ $category->categori }}
+                    </small>
+                @endforeach
             </div>
         </nav>
         <div id="app">

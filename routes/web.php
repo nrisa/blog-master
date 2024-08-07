@@ -1,26 +1,89 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContentController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BannerController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\VideoController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [LoginController::class, 'login']);
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::resource('users', UserController::class);
+Route::resource('videos', VideoController::class);
+
+Route::resource('galleries', GalleryController::class);
+Route::resource('banners', BannerController::class);
+
+Route::resource('contents', ContentController::class);
+Route::resource('categories', CategoryController::class);
 
 Route::get('/', function () {
-    return view('index');
+    $categories = \App\Models\Category::all();
+    $contents = \App\Models\Content::with('category')->latest()->take(6)->get(); // mengambil 6 blog terbaru
+    $banners = \App\Models\Banner::all();
+    $galleries = \App\Models\Gallery::all();
+    $videos = \App\Models\Video::all();
+    
+    view()->share('categories', $categories);
+
+    return view('index', compact('categories', 'contents', 'banners', 'galleries', 'videos'));
 });
 
 Route::get('/blog', function () {
-    return view('blog');
+    $categories = \App\Models\Category::all();
+    $contents = \App\Models\Content::with('category')->get();
+    $banners = \App\Models\Banner::all();
+    
+    view()->share('categories', $categories);
+
+    return view('blog', compact('categories', 'contents', 'banners'));
 });
 
-Route::get('/detail', function () {
-    return view('detail');
+Route::get('/detail/{id}', function ($id) {
+    $categories = \App\Models\Category::all();
+    $content = \App\Models\Content::with('category')->findOrFail($id);
+    
+    view()->share('categories', $categories);
+
+    return view('detail', compact('content'));
+});       
+
+Route::get('/admin', function () {
+    return view('layouts.login');
 });
+
+Route::get('/admin/dashboard', function () {
+    return view('dashboard');
+});
+
+Route::get('/admin/cms', function () {
+    $categories = \App\Models\Category::all();
+    $contents = \App\Models\Content::with('category')->get();
+    return view('cms', compact('categories', 'contents'));
+})->name('cms');
+
+Route::get('/admin/banner', function () {
+    $banners = \App\Models\Banner::all();
+    return view('banner', compact('banners'));
+})->name('banner');
+
+Route::get('/admin/gallery', function () {
+    $galleries = \App\Models\Gallery::all();
+    return view('gallery', compact('galleries'));
+})->name('gallery');
+
+Route::get('/admin/video', function () {
+    $videos = \App\Models\Video::all();
+    return view('video', compact('videos'));
+})->name('video');
+
+Route::get('/admin/user', function () {
+    $users = \App\Models\User::all();
+    return view('user', compact('users'));
+})->name('user');
+
