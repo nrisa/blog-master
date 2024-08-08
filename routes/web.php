@@ -37,20 +37,31 @@ Route::get('/', function () {
 Route::get('/blog', function () {
     $categories = \App\Models\Category::all();
     $contents = \App\Models\Content::with('category')->get();
+    $updates = \App\Models\Content::with('category')
+    ->where('status', 1)
+    ->latest()
+    ->take(6)
+    ->get();
     $banners = \App\Models\Banner::all();
     
     view()->share('categories', $categories);
 
-    return view('blog', compact('categories', 'contents', 'banners'));
+    return view('blog', compact('categories', 'contents', 'banners', 'updates'));
 });
 
 Route::get('/detail/{id}', function ($id) {
     $categories = \App\Models\Category::all();
-    $content = \App\Models\Content::with('category')->findOrFail($id);
+    $content = \App\Models\Content::with('category')->findOrFail($id);    
+    $recomends = \App\Models\Content::with('category')->latest()->take(4)->get();
+    $updates = \App\Models\Content::with('category')
+    ->where('status', 1)
+    ->latest()
+    ->take(6)
+    ->get();
     
     view()->share('categories', $categories);
 
-    return view('detail', compact('content'));
+    return view('detail', compact('content', 'recomends', 'updates'));
 });       
 
 Route::get('/admin', function () {

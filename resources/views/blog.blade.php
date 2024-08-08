@@ -28,11 +28,9 @@
     <div class="col-md-3">
       <h3>Berita Terpopuler</h3>
       <ul class="list-group mt-3">
-        <li class="list-group-item">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
+      @foreach($updates as $update)
+        <li class="list-group-item">{{ Str::limit($update->judul, 10) }}</li>
+      @endforeach
       </ul>
     </div>
     <div class="col-md-9">
