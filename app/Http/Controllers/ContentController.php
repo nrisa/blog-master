@@ -52,15 +52,17 @@ class ContentController extends Controller
         return redirect()->route('cms-list')->with('success', 'Konten berhasil dibuat.');
     }
 
-    public function show(Content $content)
+    public function show($id)
     {
-        return view('contents.show', compact('content'));
+        $content = Content::findOrFail($id);
+        return view('cms-detail', compact('content'));
     }
 
-    public function edit(Content $content)
+    public function edit($id)
     {
+        $content = Content::findOrFail($id);
         $categories = Category::all();
-        return view('contents.edit', compact('content', 'categories'));
+        return view('cms-edit', compact('content', 'categories'));
     }
 
     public function update(Request $request, Content $content)

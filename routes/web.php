@@ -65,6 +65,17 @@ Route::get('/detail/{id}', function ($id) {
     return view('detail', compact('content', 'recomends', 'updates'));
 });       
 
+Route::get('/admin/cms/detail/{id}', function ($id) {
+    $content = \App\Models\Content::with('category')->findOrFail($id); 
+    return view('cms-detail', compact('content'));
+});       
+
+Route::get('/admin/cms/edit/{id}', function ($id) {
+    $categories = \App\Models\Category::all();
+    $content = \App\Models\Content::with('category')->findOrFail($id); 
+    return view('cms-edit', compact('content', 'categories'));
+});       
+
 Route::get('/admin', function () {
     return view('layouts.login');
 });

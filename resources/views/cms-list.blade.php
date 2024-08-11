@@ -28,8 +28,8 @@
                                     <td>{{ $content->category->categori }}</td>
                                     <td>{{ $content->created_at }}</td>
                                     <td>
-                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal{{ $content->id }}">Lihat</button>
-                                        <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $content->id }}">Edit</button>
+                                        <a class="btn btn-primary btn-sm" href="/admin/cms/detail/{{ $content->id }}">Lihat</a>
+                                        <a class="btn btn-warning btn-sm" href="/admin/cms/edit/{{ $content->id }}">Edit</a>
                                         <form action="{{ route('contents.destroy', $content->id) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')

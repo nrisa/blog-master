@@ -22,6 +22,20 @@
         <link rel="stylesheet" href="{{ asset('css/datatables.css') }}">
         <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+
+        <style>
+            .sidebar:hover {
+                cursor: pointer;
+            }
+            
+            .bar {
+                height: 0;
+                padding: 0 !important;
+                overflow: hidden;
+                position: absolute;
+                top: -100px;
+            }
+        </style>
     </head>
     <body class="antialiased bg-light overflow-hidden" style="height: 100dvh;">
         <div class="row h-100 cs-reset">
@@ -39,17 +53,17 @@
                             <i class="fa-solid fa-gauge me-3"></i>Dashboard
                             </a>
                         </li> -->
-                        <li class="mb-4">
+                        <li class="mb-4 position-relative sidebar">
                             <span class="text-white" style="text-decoration: none;">
                                 <i class="fa-solid fa-newspaper me-3"></i>Content
                             </span>
-                            <ul class="mt-4 py-3 rounded" style="list-style: none;background-color: #4490ff;">
+                            <ul class="mt-4 py-3 rounded bar-click bar" style="list-style: none;background-color: #4490ff;">
                                 <li class="mb-3">
                                     <a href="/admin/cms" class="text-white" style="text-decoration: none;">
                                         <i class="fa-solid fa-file-circle-plus me-3"></i>Add Content
                                     </a>
                                 </li>
-                                <li class="mb-3">
+                                <li>
                                     <a href="/admin/cms-list" class="text-white" style="text-decoration: none;">
                                         <i class="fa-solid fa-file-lines me-4"></i>List Content
                                     </a>
@@ -114,6 +128,12 @@
         <script type="text/javascript" src="{{ asset('js/grid-gallery.min.js') }}"></script>
         <!-- Include the Quill library -->  
         <script src="{{ asset('js/datatables.js') }}"></script>
+        <script>
+            let sidebar = document.querySelector('.sidebar');
 
+            sidebar.addEventListener('click', () => {
+                document.querySelector(".bar-click").classList.toggle('bar');
+            })
+        </script>
     </body>
 </html>
