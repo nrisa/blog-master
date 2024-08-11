@@ -58,7 +58,9 @@
                     <div class="card-body">
                         <h3 class="card-title">{{ Str::limit($content->judul, 10) }}</h3>
                         <small class="text-muted">{{ $content->created_at->format('d-m-Y') }}</small>
-                        <p class="card-text mt-2">{{ Str::limit($content->isi, 24) }}</p>
+                        <!-- <p class="card-text mt-2">{!! Str::limit($content->isi, 24) !!}</p> -->
+                        <br>
+                        <br>   
                         <a href="{{ url('/detail', $content->id) }}" class="btn btn-outline-primary">Lihat Detail <i class="ms-2 fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>

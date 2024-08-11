@@ -18,6 +18,10 @@
 
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="{{ asset('css/datatables.css') }}">
+        <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
     </head>
     <body class="antialiased bg-light overflow-hidden" style="height: 100dvh;">
         <div class="row h-100 cs-reset">
@@ -36,8 +40,25 @@
                             </a>
                         </li> -->
                         <li class="mb-4">
-                            <a href="/admin/cms" class="text-white" style="text-decoration: none;">
+                            <span class="text-white" style="text-decoration: none;">
                                 <i class="fa-solid fa-newspaper me-3"></i>Content
+                            </span>
+                            <ul class="mt-4 py-3 rounded" style="list-style: none;background-color: #4490ff;">
+                                <li class="mb-3">
+                                    <a href="/admin/cms" class="text-white" style="text-decoration: none;">
+                                        <i class="fa-solid fa-file-circle-plus me-3"></i>Add Content
+                                    </a>
+                                </li>
+                                <li class="mb-3">
+                                    <a href="/admin/cms-list" class="text-white" style="text-decoration: none;">
+                                        <i class="fa-solid fa-file-lines me-4"></i>List Content
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="mb-4">
+                            <a href="/admin/category" class="text-white" style="text-decoration: none;">
+                                <i class="fa-solid fa-list me-3"></i>Category
                             </a>
                         </li>
                         <li class="mb-4">
@@ -72,9 +93,9 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                             <span class="nav-link active">Admin <i class="fa-solid fa-user ms-2 me-3"></i></span>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                             <a class="btn btn-outline-danger" href="/admin">logout</a>
                             </li>
@@ -87,8 +108,12 @@
                 </div>
             </div>
         </div>   
+
         <!-- Bootstrap -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script type="text/javascript" src="{{ asset('js/grid-gallery.min.js') }}"></script>
+        <!-- Include the Quill library -->  
+        <script src="{{ asset('js/datatables.js') }}"></script>
+
     </body>
 </html>

@@ -7,7 +7,7 @@
       <h3>Berita Terpopuler</h3>
       <ul class="list-group mt-3">        
         @foreach($updates as $update)
-          <li class="list-group-item">{{ Str::limit($update->judul, 10) }}</li>
+        <li class="list-group-item"><a href="{{ url('/detail', $update->id) }}">{{ Str::limit($update->judul, 10) }}</a></li>
         @endforeach
       </ul>
       <h3 class="my-3">Rekomendasi Berita</h3>
@@ -37,9 +37,7 @@
       <div class="mb-3 bg-secondary w-100 d-flex justify-content-center align-items-center overflow-hidden rounded mt-3" style="height: 500px">
         <img src="{{ asset('storage/' . $content->foto) }}" class="card-img-top" alt="{{ $content->title }}">
       </div>
-      <p>
-      {{ $content->isi }}
-      </p>
+      {!! $content->isi !!}
       <small class="mt-3 text-muted d-block">by {{ $content->created_by }}</small>
     </div>
   </div>    

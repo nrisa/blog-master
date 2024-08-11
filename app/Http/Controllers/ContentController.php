@@ -49,7 +49,7 @@ class ContentController extends Controller
             'jam' => now()->format('H:i:s'), // Format jam
         ]);
 
-        return redirect()->route('cms')->with('success', 'Konten berhasil dibuat.');
+        return redirect()->route('cms-list')->with('success', 'Konten berhasil dibuat.');
     }
 
     public function show(Content $content)
@@ -93,7 +93,7 @@ class ContentController extends Controller
             'jam' => now()->format('H:i:s'), // Format jam
         ]);
 
-        return redirect()->route('cms')->with('success', 'Konten berhasil diperbarui.');
+        return redirect()->route('cms-list')->with('success', 'Konten berhasil diperbarui.');
     }
 
     public function destroy(Content $content)
@@ -103,6 +103,6 @@ class ContentController extends Controller
         }
 
         $content->delete();
-        return redirect()->route('cms')->with('success', 'Konten berhasil dihapus.');
+        return redirect()->route('cms-list')->with('success', 'Konten berhasil dihapus.');
     }
 }

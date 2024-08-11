@@ -36,6 +36,7 @@ Route::get('/', function () {
 
 Route::get('/blog', function () {
     $categories = \App\Models\Category::all();
+    $recomends = \App\Models\Content::with('category')->latest()->take(4)->get();
     $contents = \App\Models\Content::with('category')->get();
     $updates = \App\Models\Content::with('category')
     ->where('status', 1)
@@ -46,7 +47,7 @@ Route::get('/blog', function () {
     
     view()->share('categories', $categories);
 
-    return view('blog', compact('categories', 'contents', 'banners', 'updates'));
+    return view('blog', compact('categories', 'contents', 'banners', 'updates', 'recomends'));
 });
 
 Route::get('/detail/{id}', function ($id) {
@@ -74,9 +75,19 @@ Route::get('/admin/dashboard', function () {
 
 Route::get('/admin/cms', function () {
     $categories = \App\Models\Category::all();
-    $contents = \App\Models\Content::with('category')->get();
-    return view('cms', compact('categories', 'contents'));
+    return view('cms', compact('categories'));
 })->name('cms');
+
+Route::get('/admin/cms-list', function () {
+    $contents = \App\Models\Content::with('category')->get();
+    $categories = \App\Models\Category::all();
+    return view('cms-list', compact('contents', 'categories'));
+})->name('cms-list');
+
+Route::get('/admin/category', function () {
+    $categories = \App\Models\Category::all();
+    return view('category', compact('categories'));
+})->name('category');
 
 Route::get('/admin/banner', function () {
     $banners = \App\Models\Banner::all();
