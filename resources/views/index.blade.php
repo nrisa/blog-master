@@ -61,7 +61,7 @@
                         <!-- <p class="card-text mt-2">{!! Str::limit($content->isi, 24) !!}</p> -->
                         <br>
                         <br>   
-                        <a href="{{ url('/detail', $content->id) }}" class="btn btn-outline-primary">Lihat Detail <i class="ms-2 fa-solid fa-arrow-right"></i></a>
+                        <a href="{{ url('/detail', $content->slug) }}" class="btn btn-outline-primary">Lihat Detail <i class="ms-2 fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>

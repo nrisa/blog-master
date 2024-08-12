@@ -6,6 +6,7 @@ use App\Models\Content;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ContentController extends Controller
 {
@@ -37,8 +38,11 @@ class ContentController extends Controller
             $fotoPath = $request->file('foto')->store('images', 'public');
         }
 
+        $slug = Str::slug($request->judul);
+
         Content::create([
             'judul' => $request->judul,
+            'slug' => $slug,
             'category_id' => $request->category_id,
             'isi' => $request->isi,
             'foto' => $fotoPath,
@@ -84,8 +88,11 @@ class ContentController extends Controller
             $fotoPath = $request->file('foto')->store('images', 'public');
         }
 
+        $slug = Str::slug($request->judul);
+
         $content->update([
             'judul' => $request->judul,
+            'slug' => $slug,
             'category_id' => $request->category_id,
             'isi' => $request->isi,
             'foto' => $fotoPath,

@@ -57,7 +57,7 @@
                             <span class="text-white" style="text-decoration: none;">
                                 <i class="fa-solid fa-newspaper me-3"></i>Content
                             </span>
-                            <ul class="mt-4 py-3 rounded bar-click bar" style="list-style: none;background-color: #4490ff;">
+                            <ul class="mt-4 py-3 rounded bar-click-1 bar" style="list-style: none;background-color: #4490ff;">
                                 <li class="mb-3">
                                     <a href="/admin/cms" class="text-white" style="text-decoration: none;">
                                         <i class="fa-solid fa-file-circle-plus me-3"></i>Add Content
@@ -66,6 +66,23 @@
                                 <li>
                                     <a href="/admin/cms-list" class="text-white" style="text-decoration: none;">
                                         <i class="fa-solid fa-file-lines me-4"></i>List Content
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="mb-4 position-relative sidebar">
+                            <span class="text-white" style="text-decoration: none;">
+                            <i class="fa-solid fa-user-tie me-3"></i>Pegawai
+                            </span>
+                            <ul class="mt-4 py-3 rounded bar-click-2 bar" style="list-style: none;background-color: #4490ff;">
+                                <li class="mb-3">
+                                    <a href="/admin/emp" class="text-white" style="text-decoration: none;">
+                                    <i class="fa-solid fa-users-gear me-3"></i>List Pegawai
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/admin/emp/add" class="text-white" style="text-decoration: none;">
+                                    <i class="fa-solid fa-user-plus me-3"></i>add Pegawai
                                     </a>
                                 </li>
                             </ul>
@@ -129,10 +146,12 @@
         <!-- Include the Quill library -->  
         <script src="{{ asset('js/datatables.js') }}"></script>
         <script>
-            let sidebar = document.querySelector('.sidebar');
+            let sidebar = document.querySelectorAll('.sidebar');
 
-            sidebar.addEventListener('click', () => {
-                document.querySelector(".bar-click").classList.toggle('bar');
+            sidebar.forEach((item, i) => {
+                item.addEventListener('click', () => {
+                    document.querySelector(`.bar-click-${i + 1}`).classList.toggle('bar');
+                })
             })
         </script>
     </body>

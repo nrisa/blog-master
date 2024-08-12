@@ -8,6 +8,48 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\EmployeeController;
+use App\Models\Category;
+use App\Models\Content;
+use App\Models\Banner;
+
+Route::get('/template', function () {
+    $categories = Category::all();
+    view()->share('categories', $categories);
+    return view('template');
+});
+
+Route::get('/blog/{cate}', function ($cate) {
+    // Ambil semua kategori untuk navigasi
+    $categories = Category::all();
+
+    // Ambil kategori yang sesuai dengan 'cate'
+    $selectedCategory = Category::where('categori', $cate)->firstOrFail();
+
+    // Ambil konten yang sesuai dengan kategori
+    $contents = Content::where('category_id', $selectedCategory->id)->get();
+
+    // Ambil konten rekomendasi terbaru
+    $recomends = Content::with('category')->latest()->take(4)->get();
+
+    // Ambil konten terpopuler terbaru
+    $updates = Content::with('category')
+        ->where('status', 1)
+        ->latest()
+        ->take(6)
+        ->get();
+
+    // Ambil semua banner
+    $banners = Banner::all();
+    
+    // Share kategori dengan semua view
+    view()->share('categories', $categories);
+
+    // Kembalikan view 'blog' dengan data yang telah diseleksi
+    return view('blog', compact('contents', 'banners', 'updates', 'recomends'));
+});
+
+Route::resource('employees', EmployeeController::class);
 
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
@@ -50,9 +92,9 @@ Route::get('/blog', function () {
     return view('blog', compact('categories', 'contents', 'banners', 'updates', 'recomends'));
 });
 
-Route::get('/detail/{id}', function ($id) {
+Route::get('/detail/{slug}', function ($slug) {
     $categories = \App\Models\Category::all();
-    $content = \App\Models\Content::with('category')->findOrFail($id);    
+    $content = \App\Models\Content::with('category')->where('slug', $slug)->firstOrFail();
     $recomends = \App\Models\Content::with('category')->latest()->take(4)->get();
     $updates = \App\Models\Content::with('category')
     ->where('status', 1)
@@ -83,6 +125,34 @@ Route::get('/admin', function () {
 Route::get('/admin/dashboard', function () {
     return view('dashboard');
 });
+
+Route::get('/admin/emp/add', function () {
+    $employees = \App\Models\Employee::all();
+    return view('emp-add', compact('employees'));
+})->name('emp-add');
+
+Route::get('/admin/emp/edit', function () {
+    $employees = \App\Models\Employee::all();
+    return view('emp-edit', compact('employees'));
+})->name('emp-edit');
+
+Route::get('/admin/emp-show', function () {
+    $employees = \App\Models\Employee::all();
+    return view('emp-show', compact('employees'));
+})->name('emp-show');
+
+Route::get('/admin/emp', function () {
+    $employees = \App\Models\Employee::all();
+    return view('emp', compact('employees'));
+})->name('emp');
+
+Route::get('/pegawai', function () {
+    $employees = \App\Models\Employee::all();
+    $categories = \App\Models\Category::all();
+    
+    view()->share('categories', $categories);
+    return view('pegawai', compact('employees'));
+})->name('pegawai');
 
 Route::get('/admin/cms', function () {
     $categories = \App\Models\Category::all();

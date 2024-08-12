@@ -7,7 +7,7 @@
       <h3>Berita Terpopuler</h3>
       <ul class="list-group mt-3">        
         @foreach($updates as $update)
-        <li class="list-group-item"><a href="{{ url('/detail', $update->id) }}">{{ Str::limit($update->judul, 10) }}</a></li>
+        <li class="list-group-item"><a href="{{ url('/detail', $update->slug) }}">{{ Str::limit($update->judul, 10) }}</a></li>
         @endforeach
       </ul>
       <h3 class="my-3">Rekomendasi Berita</h3>
@@ -19,7 +19,7 @@
             <div class="col-md-8">
               <h6 class="cs-reset fw-light">{{ Str::limit($recomend->judul, 10) }}</h6>
               <small class="text-muted text-mini">{{ $recomend->hari }}, {{ $recomend->created_at->format('d-m-Y') }} | {{ $recomend->jam }}</small><br>
-              <a href="{{ url('/detail', $recomend->id) }}" class="btn btn-outline-primary text-mini">Baca Selengkapnya...</a>
+              <a href="{{ url('/detail', $recomend->slug) }}" class="btn btn-outline-primary text-mini">Baca Selengkapnya...</a>
             </div>
             <div class="col-md-4  ">
               <div class="bg-secondary w-100 d-flex justify-content-center rounded align-items-center overflow-hidden" style="height: 70px">

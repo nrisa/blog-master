@@ -36,6 +36,9 @@
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
+                    <a class="nav-link" href="/pegawai">Pegawai</a>
+                    </li>
+                    <li class="nav-item">
                     <a class="nav-link" href="/blog">blog</a>
                     </li>
                     <li class="nav-item dropdown">
@@ -44,7 +47,7 @@
                     </a>
                     <ul class="dropdown-menu">                        
                         @foreach($categories as $category)
-                        <li><a class="dropdown-item" href="#">
+                        <li><a class="dropdown-item" href="/blog/{{ $category->categori }}">
                                 {{ $category->categori }}
                         </a></li>
                         @endforeach 
@@ -58,7 +61,9 @@
             <div class="container">                
                 @foreach($categories as $category)
                     <small class="me-2 text-white">
+                    <a class="text-white" style="text-decoration: none" href="/blog/{{ $category->categori }}">
                         {{ $category->categori }}
+                    </a>
                     </small>
                 @endforeach
             </div>

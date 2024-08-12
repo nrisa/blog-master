@@ -11,6 +11,7 @@ class CreateContentsTable extends Migration
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
+            $table->string('slug');
             $table->unsignedBigInteger('category_id'); // Menambahkan relasi ke tabel categories
             $table->text('isi');
             $table->string('foto')->nullable();
