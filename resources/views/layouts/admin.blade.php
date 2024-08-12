@@ -35,6 +35,10 @@
                 position: absolute;
                 top: -100px;
             }
+
+            img {
+                width: 100%;
+            }
         </style>
     </head>
     <body class="antialiased bg-light overflow-hidden" style="height: 100dvh;">
